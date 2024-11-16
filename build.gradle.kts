@@ -4,6 +4,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.6"
     kotlin("jvm")
     id("com.diffplug.spotless") version "6.25.0"
+    id("jacoco")
 }
 
 group = "com.ahmedharis"
@@ -29,6 +30,16 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation(kotlin("stdlib-jdk8"))
+}
+
+tasks {
+    jacocoTestReport {
+        dependsOn("test")
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
+    }
 }
 
 spotless {
