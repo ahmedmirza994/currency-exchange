@@ -5,6 +5,7 @@ plugins {
     kotlin("jvm")
     id("com.diffplug.spotless") version "6.25.0"
     id("jacoco")
+    id("org.sonarqube") version "3.5.0.2730"
 }
 
 group = "com.ahmedharis"
@@ -38,6 +39,16 @@ tasks {
         reports {
             xml.required.set(true)
             html.required.set(true)
+        }
+    }
+
+    sonarqube {
+        properties {
+            property("sonar.projectKey", "ahmedmirza994_currency-exchange")
+            property("sonar.organization", "ahmedmirza994")
+            property("sonar.host.url", "https://sonarcloud.io")
+            property("sonar.java.binaries", file("build/classes/java/main"))
+            property("sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
         }
     }
 }
