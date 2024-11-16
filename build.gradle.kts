@@ -57,5 +57,5 @@ tasks.withType<Test> {
 }
 
 tasks.register("runAllChecks") {
-    dependsOn("spotlessApply")
+    dependsOn("spotlessCheck", "test", "jacocoTestReport")
 }
