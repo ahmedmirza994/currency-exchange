@@ -1,5 +1,6 @@
 package com.ahmedharis.currencyexchange.controller;
 
+import com.ahmedharis.currencyexchange.dto.ApiResponse;
 import com.ahmedharis.currencyexchange.dto.BillDto;
 import com.ahmedharis.currencyexchange.dto.PayableAmountDto;
 import com.ahmedharis.currencyexchange.service.CalculationService;
@@ -19,7 +20,8 @@ public class CurrencyController {
   }
 
   @PostMapping("/calculate")
-  public PayableAmountDto calculate(@Valid @RequestBody BillDto billDto) {
-    return calculationService.calculatePayableAmount(billDto);
+  public ApiResponse<PayableAmountDto> calculate(@Valid @RequestBody BillDto billDto) {
+    PayableAmountDto dto = calculationService.calculatePayableAmount(billDto);
+    return ApiResponse.success(dto);
   }
 }

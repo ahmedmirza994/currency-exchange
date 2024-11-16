@@ -1,5 +1,6 @@
 package com.ahmedharis.currencyexchange.client;
 
+import com.ahmedharis.currencyexchange.exception.ExchangeRateException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Map;
@@ -31,12 +32,12 @@ public class ExchangeRateClient {
 
     try (var response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new RuntimeException("Failed to fetch exchange rate");
+        throw new ExchangeRateException("Failed to get exchange rate");
       }
       var jsonResponse = objectMapper.readValue(response.body().string(), Map.class);
       return (double) jsonResponse.get("conversion_rate");
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new ExchangeRateException("Error occurred while fetching exchange rate", e);
     }
   }
 }
