@@ -14,10 +14,15 @@ public class ExchangeRateClient {
 
     @Value("${exchangerate.api.key}")
     private String apiKey;
-    private final OkHttpClient client = new OkHttpClient();
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final OkHttpClient client;
+    private final ObjectMapper objectMapper;
 
     private static final String BASE_URL = "https://v6.exchangerate-api.com/v6";
+
+    public ExchangeRateClient(OkHttpClient client, ObjectMapper objectMapper) {
+        this.client = client;
+        this.objectMapper = objectMapper;
+    }
 
     public Double getConversionRate(String originalCurrency, String targetCurrency) {
         String url = String.format("%s/%s/pair/%s/%s", BASE_URL, apiKey, originalCurrency, targetCurrency);
