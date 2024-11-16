@@ -34,8 +34,10 @@ jobs:
       - name: Run Spotless Check
         run: ./gradlew spotlessCheck
 
-      - name: Run Unit Tests
-        run: ./gradlew test
+      - name: Run Tests with JUnit XML Output
+        run: ./gradlew test --tests '*'
+        env:
+          CI: true
 
       - name: Generate Code Coverage Report
         run: ./gradlew jacocoTestReport
@@ -45,6 +47,13 @@ jobs:
         with:
           name: test-results
           path: build/test-results/test
+
+      - name: Display Test Results
+        uses: dorny/test-reporter@v1
+        with:
+          name: JUnit Results
+          path: build/test-results/test/TEST-*.xml
+          report: true
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v3
