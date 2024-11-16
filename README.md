@@ -1,0 +1,1 @@
+![Spotless](https://github.com/ahmedmirza994/currency-exchange/actions/workflows/spotless.yml/badge.svg)
