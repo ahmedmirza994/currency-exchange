@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class CurrencyController {
-    private final CalculationService calculationService;
+  private final CalculationService calculationService;
 
-    public CurrencyController(CalculationService calculationService) {
-        this.calculationService = calculationService;
-    }
+  public CurrencyController(CalculationService calculationService) {
+    this.calculationService = calculationService;
+  }
 
-    @PostMapping("/calculate")
-    public PayableAmountDto calculate(@Valid @RequestBody BillDto billDto) {
-        return calculationService.calculatePayableAmount(billDto);
-    }
+  @PostMapping("/calculate")
+  public PayableAmountDto calculate(@Valid @RequestBody BillDto billDto) {
+    return calculationService.calculatePayableAmount(billDto);
+  }
 }

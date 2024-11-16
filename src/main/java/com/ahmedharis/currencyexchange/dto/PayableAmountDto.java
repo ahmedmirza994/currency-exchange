@@ -6,6 +6,4 @@ public record PayableAmountDto(
     Double totalAmountBeforeConversion,
     Double conversionRate,
     String sourceCurrency,
-    String targetCurrency
-) {
-}
+    String targetCurrency) {}

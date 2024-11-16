@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CurrencyServiceImpl implements CurrencyService {
-    private final ExchangeRateClient exchangeRateClient;
+  private final ExchangeRateClient exchangeRateClient;
 
-    public CurrencyServiceImpl(ExchangeRateClient exchangeRateClient) {
-        this.exchangeRateClient = exchangeRateClient;
-    }
+  public CurrencyServiceImpl(ExchangeRateClient exchangeRateClient) {
+    this.exchangeRateClient = exchangeRateClient;
+  }
 
-    @Override
-    public Double getExchangeRate(String fromCurrency, String toCurrency) {
-        return exchangeRateClient.getConversionRate(fromCurrency, toCurrency);
-    }
+  @Override
+  public Double getExchangeRate(String fromCurrency, String toCurrency) {
+    return exchangeRateClient.getConversionRate(fromCurrency, toCurrency);
+  }
 }

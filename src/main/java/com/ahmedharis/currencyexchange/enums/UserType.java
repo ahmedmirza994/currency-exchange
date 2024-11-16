@@ -1,8 +1,8 @@
 package com.ahmedharis.currencyexchange.enums;
 
 public enum UserType {
-    ADMIN,
-    EMPLOYEE,
-    AFFILIATE,
-    CUSTOMER
+  ADMIN,
+  EMPLOYEE,
+  AFFILIATE,
+  CUSTOMER
 }
