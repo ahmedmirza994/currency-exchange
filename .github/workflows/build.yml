@@ -53,7 +53,7 @@ jobs:
         with:
           name: JUnit Results
           path: build/test-results/test/TEST-*.xml
-          report: true
+          reporter: 'java-junit'
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v3
