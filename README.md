@@ -49,6 +49,21 @@ To generate test coverage reports, use the following command:
 
 The code coverage report will be generated in the following directory: `build/reports/jacoco/test/html/index.html`
 
+## In-Memory Users
+The application has a few in-memory users for testing purposes.
+- employee: username: employee, password: employee123, roles: EMPLOYEE
+- affiliate: username: affiliate, password: affiliate123, roles: AFFILIATE
+- customer: username: customer, password: customer123, roles: CUSTOMER
+
+### Passing Users in Request
+To authenticate and pass these users in the request, you need to include the Authorization header with the base64 encoded username and password. For example, to authenticate as the employee user:
+- Encode the username and password in base64: `employee:employee123` becomes `ZW1wbG95ZWU6ZW1wbG95ZWUxMjM=`.
+- Include the Authorization header in your request:
+  - POST /api/v1/currency-exchange HTTP/1.1
+  - Host: localhost:8080
+  - Authorization: Basic YWRtaW46YWRtaW4xMjM=
+  - Content-Type: application/json
+
 ### API Endpoint
 The application exposes a REST API endpoint for currency conversion. The endpoint is accessible at: `http://localhost:8080/api/v1/currency-exchange`
 Method: `POST`

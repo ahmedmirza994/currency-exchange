@@ -45,6 +45,12 @@ public class SecurityConfig {
             .password(passwordEncoder.encode("affiliate123"))
             .roles("AFFILIATE")
             .build();
+    UserDetails user4 =
+        User.builder()
+            .username("customer")
+            .password(passwordEncoder.encode("customer123"))
+            .roles("CUSTOMER")
+            .build();
 
     return new InMemoryUserDetailsManager(user1, user2, user3);
   }
@@ -56,7 +62,7 @@ public class SecurityConfig {
             authorizeRequests ->
                 authorizeRequests
                     .requestMatchers("/api/calculate")
-                    .hasAnyRole("ADMIN", "EMPLOYEE", "AFFILIATE")
+                    .hasAnyRole("ADMIN", "EMPLOYEE", "AFFILIATE", "CUSTOMER")
                     .anyRequest()
                     .permitAll())
         .httpBasic(withDefaults());
