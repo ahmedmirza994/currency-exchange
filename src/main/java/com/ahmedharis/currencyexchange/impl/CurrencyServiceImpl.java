@@ -8,20 +8,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class CurrencyServiceImpl implements CurrencyService {
   private final ExchangeRateClient exchangeRateClient;
-  private final ExchangeRateCache exchangeRateCacheService;
+  private final ExchangeRateCache exchangeRateCach;
 
   public CurrencyServiceImpl(ExchangeRateClient exchangeRateClient) {
     this.exchangeRateClient = exchangeRateClient;
-    this.exchangeRateCacheService = ExchangeRateCache.getInstance();
+    this.exchangeRateCach = ExchangeRateCache.getInstance();
   }
 
   @Override
   public Double getExchangeRate(String fromCurrency, String toCurrency) {
     String key = fromCurrency + "_" + toCurrency;
-    Double rate = exchangeRateCacheService.get(key);
+    Double rate = exchangeRateCach.get(key);
     if (rate == null) {
       rate = exchangeRateClient.getConversionRate(fromCurrency, toCurrency);
-      exchangeRateCacheService.put(key, rate);
+      exchangeRateCach.put(key, rate);
     }
     return rate;
   }
